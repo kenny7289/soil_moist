@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Platform } from 'react-native';
-import { login } from '../account/login';
+import Moisture from '../moisture';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 
 
 
-export default function userAccount() {
+export default function moistView() {
     return (
         <ParallaxScrollView
             headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -14,7 +14,7 @@ export default function userAccount() {
                     style={styles.reactLogo}
                 />
             }>
-            {login()}
+            {Moisture()}
         </ParallaxScrollView >
     );
 }
