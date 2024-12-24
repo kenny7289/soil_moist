@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -26,15 +26,31 @@ export function HelloWave() {
 
   return (
     <Animated.View style={animatedStyle}>
-      <ThemedText style={styles.text}>👋</ThemedText>
+      <View style={styles.container}>
+        <Text style={styles.text}>🌱 歡迎使用植物生長環境監控APP！</Text>
+        <Text style={styles.introText}>
+          本應用程式幫助您監控植物的生長環境，包括溫度、濕度、光照等數據，確保您的植物健康成長。
+        </Text>
+      </View>
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    alignItems: 'center',
+  },
   text: {
     fontSize: 28,
     lineHeight: 32,
     marginTop: -6,
+    fontWeight: 'bold',
+  },
+  introText: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginTop: 10,
+    textAlign: 'center',
   },
 });
