@@ -7,6 +7,7 @@ import { ThemedView } from '@/components/ThemedView';
 
 export default function Moisture() {
     const [data, setData] = useState({ temp: 13.2, moist: 79, datetime: "2024-11-27" });
+    const [soilData, setSoilData] = useState({ soilTemp: 20.5, soilMoist: 65 });
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -19,7 +20,17 @@ export default function Moisture() {
             }
         }
 
+        async function fetchSoilData() {
+            try {
+                const response = await axios.get('YOUR_SOIL_API_URL_HERE');
+                setSoilData(response.data);
+            } catch (err) {
+                setError(err);
+            }
+        }
+
         fetchData();
+        fetchSoilData();
     }, []);
 
     return (
@@ -35,6 +46,12 @@ export default function Moisture() {
                         <ThemedText style={styles.text}>目前溫度：{data.temp}度</ThemedText>
                         <ThemedText style={styles.text}>目前濕度：{data.moist}%</ThemedText>
                         <ThemedText style={styles.text}>時間：{data.datetime}</ThemedText>
+                    </>
+                )}
+                {soilData.soilTemp !== null && soilData.soilMoist !== null && (
+                    <>
+                        <ThemedText style={styles.text}>土壤溫度：{soilData.soilTemp}度</ThemedText>
+                        <ThemedText style={styles.text}>土壤濕度：{soilData.soilMoist}%</ThemedText>
                     </>
                 )}
             </ThemedView>
